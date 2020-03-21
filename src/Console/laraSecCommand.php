@@ -18,7 +18,7 @@ class laraSecCommand extends Command {
 
       foreach($packages as $package) {
         list($vendor, $project) = explode('/', $package['name']);
-        $alerts = $laraSec->getSecurityAlerts($vendor, $project,'7.0.0');
+        $alerts = $laraSec->getSecurityAlerts($vendor, $project, $package['version']);
         if(sizeof($alerts) > 0) {
           $this->error($package['name']);
           foreach($alerts as $alert) {
