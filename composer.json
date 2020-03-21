@@ -1,0 +1,29 @@
+{
+    "name": "xqus/larasec",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Audun Larsen",
+            "email": "larsen@xqus.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "xqus\\laraSec\\": "src/"
+        }
+    },
+    "require": {
+        "sensiolabs/security-advisories": "dev-master",
+        "symfony/yaml": "^5.1@dev",
+        "composer/semver": "^1.0@dev"
+    },
+
+    "extra": {
+      "laravel": {
+          "providers": [
+              "xqus\\laraSec\\laraSecServiceProvider"
+          ]
+      }
+  }
+}
