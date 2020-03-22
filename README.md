@@ -1,7 +1,7 @@
-<p align="center">
-  <h1>laraSec for Laravel</h1>
+<h1>
+  laraSec for
   <img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="200">
-</p>
+</h1>
 
 <p align="center">
   <a href="https://travis-ci.org/xqus/larasec">
@@ -20,6 +20,14 @@
 
 ## Introduction
 
+laraSec is a Laravel package that will scan your composer dependencies
+and alerts you about potention security vulnerabilities. laraSec uses
+[PHP Security Advisories Database](https://github.com/FriendsOfPHP/security-advisories) as a source of known vulnerabilities.
+
 ## Installation
 
+`composer require xqus/larasec`
+
 ## Usage
+
+ `php artisan larasec:scan`
