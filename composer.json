@@ -13,6 +13,11 @@
             "xqus\\laraSec\\": "src/"
         }
     },
+    "autoload-dev": {
+      "psr-4": {
+          "xqus\\laraSec\\Tests\\": "tests"
+      }
+    },
     "require": {
         "symfony/yaml": "^5.0",
         "composer/semver": "^1.0",
@@ -25,5 +30,9 @@
               "xqus\\laraSec\\laraSecServiceProvider"
           ]
       }
-  }
+  },
+    "require-dev": {
+        "phpunit/phpunit": "^9.1@dev",
+        "orchestra/testbench": "^5.1"
+    }
 }
