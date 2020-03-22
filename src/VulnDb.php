@@ -16,7 +16,9 @@ class VulnDb {
   }
 
   public function update() {
-    mkdir($this->tmpDir);
+    if(!is_dir($this->tmpDir)) {
+      mkdir($this->tmpDir);
+    }
 
     $client = new \GuzzleHttp\Client();
     $response = $client->request('GET', $this->source);
