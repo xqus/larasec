@@ -4,7 +4,7 @@
 </h1>
 
 <p align="center">
-  <a href="https://travis-ci.org/xqus/larasec">
+  <a href="https://travis-ci.com/github/xqus/larasec">
     <img src="https://travis-ci.org/xqus/larasec.svg" alt="Build Status">
   </a>
   <a href="https://packagist.org/packages/xqus/larasec">
