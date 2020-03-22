@@ -12,6 +12,8 @@ class laraSecCommand extends Command {
     public function handle() {
       $laraSec = new laraSec;
 
+      $laraSec->updateAlertsDb();
+
       $composerLock = $laraSec->getDependencies();
 
       $packages = $composerLock['packages'];

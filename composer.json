@@ -14,9 +14,9 @@
         }
     },
     "require": {
-        "sensiolabs/security-advisories": "dev-master",
         "symfony/yaml": "^5.0",
-        "composer/semver": "^1.0"
+        "composer/semver": "^1.0",
+        "guzzlehttp/guzzle": "^6.5"
     },
 
     "extra": {
