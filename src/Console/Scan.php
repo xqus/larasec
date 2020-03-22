@@ -5,7 +5,7 @@ namespace xqus\laraSec\Console;
 use Illuminate\Console\Command;
 use xqus\laraSec\laraSec;
 
-class laraSecCommand extends Command {
+class Scan extends Command {
     protected $signature = 'larasec:scan';
     protected $description = 'Run a laraSec scan';
 

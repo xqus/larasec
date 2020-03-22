@@ -2,7 +2,7 @@
 namespace xqus\laraSec;
 
 use Illuminate\Support\ServiceProvider;
-use xqus\laraSec\Console\laraSecCommand;
+use xqus\laraSec\Console\Scan;
 
 class laraSecServiceProvider extends ServiceProvider {
 
@@ -14,7 +14,7 @@ class laraSecServiceProvider extends ServiceProvider {
     if ($this->app->runningInConsole()) {
 
     $this->commands([
-        laraSecCommand::class,
+        Scan::class,
     ]);
   }
   }
