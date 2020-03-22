@@ -33,7 +33,6 @@ class SecurityScannerCheckTest extends TestCase
       Artisan::call('larasec:update');
       $laraSec = new laraSec;
       $alerts = $laraSec->getSecurityAlerts('laravel', 'framework', '4.1.2');
-      echo sizeof($alerts);
       $this->assertTrue(sizeof($alerts) == 4);
     }
 }
