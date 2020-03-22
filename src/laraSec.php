@@ -17,20 +17,34 @@ class laraSec {
     );
   }
 
+  public function getStoragePath() {
+    return storage_path().'/app/larasec/';
+  }
+
+  public function getTmpStoragePath() {
+
+  }
+
+  public function prepeareStorage() {
+    Storage::makeDirectory('larasec');
+  }
+
   public function updateAlertsDb() {
+    $this->prepeareStorage();
+
     $url = 'https://github.com/FriendsOfPHP/security-advisories/archive/master.zip';
     $client = new \GuzzleHttp\Client();
     $response = $client->request('GET', $url);
 
-    Storage::disk('local')->put('larasec/master.zip',  $response->getBody());
+    file_put_contents($this->getStoragePath().'/master.zip', $response->getBody());
 
     $zip = new \ZipArchive;
-    $res = $zip->open(storage_path('app/larasec').'/master.zip');
+    $res = $zip->open($this->getStoragePath().'/master.zip');
     if ($res === TRUE) {
-      $zip->extractTo(storage_path('app/larasec'));
+      $zip->extractTo($this->getStoragePath());
       $zip->close();
     }
-    Storage::disk('local')->delete('larasec/master.zip');
+    unlink($this->getStoragePath().'/master.zip');
   }
 
   public function getSecurityAlerts($vendor, $name, $version) {

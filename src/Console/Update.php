@@ -10,6 +10,8 @@ class Update extends Command {
     protected $description = 'Update the vulnerability database.';
 
     public function handle() {
-      $laraSec->updateAlertsDb();    
+      $laraSec = new laraSec;
+      
+      $laraSec->updateAlertsDb();
     }
 }
