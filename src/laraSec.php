@@ -28,19 +28,19 @@ class laraSec {
       $contents = Storage::get($file);
       $yaml = Yaml::parse($contents);
       foreach($yaml['branches'] as $branch) {
+        $isVulnerable = true;
         foreach($branch['versions'] as $constraints) {
-          $isVulnerable = true;
           if(!Semver::satisfies($version, $constraints)) {
             $isVulnerable = false;
           }
         }
-      }
-      if($isVulnerable) {
-        $alerts[] = [
-          'title' => $yaml['title'],
-          'link'  => $yaml['link'],
-        ];
-      }
+        if($isVulnerable) {
+          $alerts[] = [
+            'title' => $yaml['title'],
+            'link'  => $yaml['link'],
+          ];
+        }
+      }      
     }
     return $alerts;
   }
