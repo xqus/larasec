@@ -50,7 +50,7 @@ class laraSec {
   public function getSecurityAlerts($vendor, $name, $version) {
     $alerts = array();
 
-    $path = storage_path('app/larasec') . '/security-advisories-master/';
+    $path = $this->getStoragePath() . '/security-advisories-master/';
     $projectPath = $path.$vendor.'/'.$name;
     if(file_exists($projectPath)) {
       $d = dir($projectPath);

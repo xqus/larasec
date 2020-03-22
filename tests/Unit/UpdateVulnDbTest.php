@@ -15,8 +15,8 @@ class UpdateVulnDbTest extends TestCase
 
         Artisan::call('larasec:update');
 
-        $this->assertFalse(file_exists(storage_path().'/larasec/master.zip'));
-        echo storage_path().'/larasec/security-advisories-master/laravel/framework/2020-03-13-1.yaml';
-        $this->assertTrue(file_exists(storage_path().'/larasec/security-advisories-master/laravel/framework/2020-03-13-1.yaml'));
+        $this->assertFalse(file_exists(storage_path().'/app/larasec/master.zip'));
+        echo storage_path().'/app/larasec/security-advisories-master/laravel/framework/2020-03-13-1.yaml';
+        $this->assertTrue(file_exists(storage_path().'/larasec/app/security-advisories-master/laravel/framework/2020-03-13-1.yaml'));
     }
 }
