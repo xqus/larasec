@@ -26,7 +26,7 @@ class laraSec {
   }
 
   public function prepeareStorage() {
-    Storage::makeDirectory('larasec');
+    mkdir($this->getStoragePath());
   }
 
   public function updateAlertsDb() {
