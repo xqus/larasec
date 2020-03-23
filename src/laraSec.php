@@ -1,5 +1,4 @@
 <?php
-
 namespace xqus\laraSec;
 
 use Symfony\Component\Yaml\Yaml;

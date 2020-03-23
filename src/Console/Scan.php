@@ -1,5 +1,4 @@
 <?php
-
 namespace xqus\laraSec\Console;
 
 use Illuminate\Console\Command;

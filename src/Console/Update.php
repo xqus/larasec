@@ -1,5 +1,4 @@
 <?php
-
 namespace xqus\laraSec\Console;
 
 use Illuminate\Console\Command;
@@ -12,7 +11,7 @@ class Update extends Command {
 
     public function handle() {
       $this->comment('Updating vulnerability database..');
-      
+
       $VulnDb = new VulnDb;
       $VulnDb->update();
     }
