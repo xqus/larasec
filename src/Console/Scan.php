@@ -29,24 +29,37 @@ class Scan extends Command {
 
       $packages = $composerLock['packages'];
 
-      $bar = $this->output->createProgressBar(sizeof($packages));
-      $bar->start();
-
       foreach($packages as $package) {
         list($vendor, $project) = explode('/', $package['name']);
+
+        // Check for updates on Packagist. We are looking for updates with
+        // same major and minor version, but higher patch version number.
+        $updates = $Packagist->hasPatchUpdates($vendor, $project, $package['version']);
+
+        if($updates === true) {
+          // The package has a version with higher patch number.
+          $this->comment($package['name']);
+          $this->line('This package has a newer, compatible package available. You should consider updating.');
+          $this->line('');
+        } elseif($updates === false) {
+          // The package had an unusual version number. Probably a development
+          // version.
+          $this->comment($package['name']);
+          $this->line('You are using version '.$package['version'].'. This version number looks like a development version.');
+          $this->line('');
+        }
+
+        // Check for known security vulnerabilities.
         $alerts = $laraSec->getSecurityAlerts($vendor, $project, $package['version']);
-        $updates = $Packagist->getPatchUpdates($vendor, $project, $package['version']);
         if(sizeof($alerts) > 0) {
           $this->error($package['name']);
           foreach($alerts as $alert) {
             $this->info($package['version'].': '.$alert['title']);
             $this->line($alert['link']);
+            $this->line('');
           }
         }
-        $bar->advance();
       }
-      $bar->finish();
-      $this->line();
 
       $this->comment('Scanned '.sizeof($packages).' packages, found '.sizeof($alerts).' vulnerabilities.');
     }
