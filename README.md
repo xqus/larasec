@@ -5,7 +5,7 @@
 
 <p align="center">
   <a href="https://travis-ci.com/github/xqus/larasec">
-    <img src="https://travis-ci.org/xqus/larasec.svg" alt="Build Status">
+    <img src="https://travis-ci.com/xqus/larasec.svg?branch=master" alt="Build Status">
   </a>
   <a href="https://packagist.org/packages/xqus/larasec">
     <img src="https://poser.pugx.org/xqus/larasec/d/total.svg" alt="Total Downloads">
