@@ -12,7 +12,7 @@ class Update extends Command {
 
     public function handle() {
       $VulnDb = new VulnDb;
-
-      $VulnDb->update();
+      $this->comment('Updating vulnerability database..');
+      $VulnDb->update();      
     }
 }
