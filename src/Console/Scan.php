@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use xqus\laraSec\laraSec;
 
 class Scan extends Command {
-    protected $signature = 'larasec:scan {--u|update=yes : Update the vulnerability database?}';
+    protected $signature = 'larasec:scan {--u|update=ask : Update the vulnerability database?}';
     protected $description = 'Run a laraSec scan';
 
     public function handle() {
