@@ -11,8 +11,9 @@ class Update extends Command {
     protected $description = 'Update the vulnerability database.';
 
     public function handle() {
-      $VulnDb = new VulnDb;
       $this->comment('Updating vulnerability database..');
-      $VulnDb->update();      
+      
+      $VulnDb = new VulnDb;
+      $VulnDb->update();
     }
 }
