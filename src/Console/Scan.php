@@ -6,14 +6,16 @@ use Illuminate\Console\Command;
 use xqus\laraSec\laraSec;
 
 class Scan extends Command {
-    protected $signature = 'larasec:scan';
+    protected $signature = 'larasec:scan {--u|update=yes : Update the vulnerability database?}';
     protected $description = 'Run a laraSec scan';
 
     public function handle() {
       $this->info('-= Starting scan =-');
 
-      if ($this->confirm('Do you wish to update the vulnerability database first?')) {
-        $this->call('larasec:update');
+      if($this->option('update') !== 'no') {
+        if ($this->option('update') === 'yes' || $this->confirm('Do you wish to update the vulnerability database first?')) {
+          $this->call('larasec:update');
+        }
       }
 
       $laraSec = new laraSec;
