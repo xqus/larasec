@@ -3,6 +3,7 @@
 namespace xqus\laraSec\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use xqus\laraSec\laraSec;
 
 class Scan extends Command {
@@ -10,10 +11,19 @@ class Scan extends Command {
     protected $description = 'Run a laraSec scan';
 
     public function handle() {
+      $this->info('-= Starting scan =-');
+
+      if ($this->confirm('Do you wish to update the vulnerability database first?')) {
+        Artisan::call('larasec:update');
+      }
+
       $laraSec = new laraSec;
 
-
       $composerLock = $laraSec->getDependencies();
+      if($composerLock === false) {
+        $this->error('Unable to open composer.lock');
+        return 1;
+      }
 
       $packages = $composerLock['packages'];
 
@@ -28,5 +38,6 @@ class Scan extends Command {
           }
         }
       }
+      $this->comment('Scanned '.sizeof($packages).' packages, found '.sizeof($alerts).' vulnerabilities.');
     }
 }
