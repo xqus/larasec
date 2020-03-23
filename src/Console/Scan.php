@@ -3,6 +3,7 @@ namespace xqus\laraSec\Console;
 
 use Illuminate\Console\Command;
 use xqus\laraSec\laraSec;
+use xqus\laraSec\Packagist;
 
 class Scan extends Command {
     protected $signature = 'larasec:scan {--u|update=ask : Update the vulnerability database?}';
@@ -17,7 +18,8 @@ class Scan extends Command {
         }
       }
 
-      $laraSec = new laraSec;
+      $laraSec   = new laraSec;
+      $Packagist = new Packagist;
 
       $composerLock = $laraSec->getDependencies();
       if($composerLock === false) {
@@ -27,9 +29,13 @@ class Scan extends Command {
 
       $packages = $composerLock['packages'];
 
+      $bar = $this->output->createProgressBar(sizeof($packages));
+      $bar->start();
+
       foreach($packages as $package) {
         list($vendor, $project) = explode('/', $package['name']);
         $alerts = $laraSec->getSecurityAlerts($vendor, $project, $package['version']);
+        $updates = $Packagist->getPatchUpdates($vendor, $project, $package['version']);
         if(sizeof($alerts) > 0) {
           $this->error($package['name']);
           foreach($alerts as $alert) {
@@ -37,7 +43,11 @@ class Scan extends Command {
             $this->line($alert['link']);
           }
         }
+        $bar->advance();
       }
+      $bar->finish();
+      $this->line();
+
       $this->comment('Scanned '.sizeof($packages).' packages, found '.sizeof($alerts).' vulnerabilities.');
     }
 }
