@@ -29,5 +29,16 @@ and alerts you about potention security vulnerabilities. laraSec uses
 `composer require xqus/larasec`
 
 ## Usage
+```
+// Scan for vulnerable packages
+php artisan larasec:scan
 
- `php artisan larasec:scan`
+// Scan but don't update the database fist
+php artisan larasec:scan --update no
+
+// Scan, but update the database without asking first
+php artisan larasec:scan --update yes
+
+// Update the database
+php artisan larasec:update
+```
