@@ -12,7 +12,6 @@ class SecurityScannerCheckTest extends TestCase
     /** @test */
     function lookup_works_1()
     {
-      Artisan::call('larasec:update');
       $laraSec = new laraSec;
       $alerts = $laraSec->getSecurityAlerts('laravel', 'framework', '7.0.0');
       $this->assertTrue(sizeof($alerts) == 1);
@@ -21,7 +20,6 @@ class SecurityScannerCheckTest extends TestCase
     /** @test */
     function lookup_works_2()
     {
-      Artisan::call('larasec:update');
       $laraSec = new laraSec;
       $alerts = $laraSec->getSecurityAlerts('laravel', 'framework', '7.1.2');
       $this->assertTrue(sizeof($alerts) == 0);
@@ -30,7 +28,6 @@ class SecurityScannerCheckTest extends TestCase
     /** @test */
     function lookup_works_3()
     {
-      Artisan::call('larasec:update');
       $laraSec = new laraSec;
       $alerts = $laraSec->getSecurityAlerts('laravel', 'framework', '4.1.2');
       $this->assertTrue(sizeof($alerts) == 4);
