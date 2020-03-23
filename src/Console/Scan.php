@@ -3,7 +3,6 @@
 namespace xqus\laraSec\Console;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 use xqus\laraSec\laraSec;
 
 class Scan extends Command {
@@ -14,7 +13,7 @@ class Scan extends Command {
       $this->info('-= Starting scan =-');
 
       if ($this->confirm('Do you wish to update the vulnerability database first?')) {
-        Artisan::call('larasec:update');
+        $this->call('larasec:update');
       }
 
       $laraSec = new laraSec;
