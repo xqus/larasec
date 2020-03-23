@@ -33,10 +33,10 @@ and alerts you about potention security vulnerabilities. laraSec uses
 // Scan for vulnerable packages
 php artisan larasec:scan
 
-// Scan but don't update the database fist
+// Scan but don't update the database first
 php artisan larasec:scan --update no
 
-// Scan, but update the database without asking first
+// Scan, and update the database without asking first
 php artisan larasec:scan --update yes
 
 // Update the database
