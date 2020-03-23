@@ -16,7 +16,9 @@ class Packagist {
 
       $client = new \GuzzleHttp\Client();
       $response = $client->request('GET', 'https://packagist.org/packages/'.$vendor.'/'.$package.'.json');
-
+      if($response->getStatusCode() !== 200) {
+        return null;
+      }
       $json = json_decode($response->getBody());
 
       foreach ($json->package->versions as $ver => $versionData) {
