@@ -20,6 +20,8 @@ and alerts you about potention security vulnerabilities. laraSec uses
 
 `composer require xqus/larasec`
 
+`php artisan vendor:publish --provider="xqus\laraSec\laraSecServiceProvider" --tag="config"`
+
 ## Usage
 ```
 // Scan for vulnerable packages
