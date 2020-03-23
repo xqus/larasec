@@ -10,6 +10,9 @@ class laraSec {
 
   public function getDependencies() {
     $path = base_path();
+    if(!file_exists($path . "/composer.lock")) {
+      return false;
+    }
 
     return json_decode(
       file_get_contents($path . "/composer.lock"),
@@ -40,7 +43,7 @@ class laraSec {
             'link'  => $yaml['link'],
           ];
         }
-      }      
+      }
     }
     return $alerts;
   }
