@@ -35,7 +35,7 @@ class Scan extends Command {
         // Check for updates on Packagist. We are looking for updates with
         // same major and minor version, but higher patch version number.
         $updates = $Packagist->hasPatchUpdates($vendor, $project, $package['version']);
-
+        uslep(20000); // We want to be nice with the packagist API
         if($updates === true) {
           // The package has a version with higher patch number.
           $this->comment($package['name']);
