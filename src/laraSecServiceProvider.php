@@ -4,6 +4,7 @@ namespace xqus\laraSec;
 use Illuminate\Support\ServiceProvider;
 use xqus\laraSec\Console\Scan;
 use xqus\laraSec\Console\Update;
+use xqus\laraSec\Console\Notify;
 
 class laraSecServiceProvider extends ServiceProvider {
 
@@ -20,6 +21,7 @@ class laraSecServiceProvider extends ServiceProvider {
       $this->commands([
         Scan::class,
         Update::class,
+        Notify::class,
       ]);
     }
   }
