@@ -8,11 +8,13 @@ use JohnDoe\BlogPackage\Models\Post;
 
 class ScanReportNotification extends Notification
 {
-    public $post;
+    public $alerts;
+    public $updates;
 
-    public function __construct()
+    public function __construct(Array $alerts, Array $updates)
     {
-
+      $this->alerts = $alerts;
+      $this->updates = $updates;
     }
 
     /**
@@ -34,10 +36,14 @@ class ScanReportNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->greeting('Hello!')
-            ->line("Your post was accepted")
-            ->line('Thank you for using our application!');
+      return (new MailMessage)
+          ->subject('laraSec report')
+          ->markdown('larasec::mail.scanReport', [
+            'alerts'  => $this->alerts,
+            'updates' => $this->updates,
+          ]);
+
+
     }
 
     /**

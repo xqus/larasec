@@ -13,6 +13,8 @@ class laraSecServiceProvider extends ServiceProvider {
   }
 
   public function boot() {
+    $this->loadViewsFrom(__DIR__.'/../resources/views', 'larasec');
+    
     if ($this->app->runningInConsole()) {
       $this->publishes([
        __DIR__.'/../config/config.php' => config_path('larasec.php'),

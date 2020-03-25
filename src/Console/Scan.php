@@ -21,13 +21,12 @@ class Scan extends Command {
       $laraSec   = new laraSec;
       $Packagist = new Packagist;
 
-      $composerLock = $laraSec->getDependencies();
-      if($composerLock === false) {
+      $packages = $laraSec->getDependencies();
+      if($packages === false) {
         $this->error('Unable to open composer.lock');
         return 1;
       }
 
-      $packages = $composerLock['packages'];
 
       foreach($packages as $package) {
         list($vendor, $project) = explode('/', $package['name']);
@@ -35,7 +34,7 @@ class Scan extends Command {
         // Check for updates on Packagist. We are looking for updates with
         // same major and minor version, but higher patch version number.
         $updates = $Packagist->hasPatchUpdates($vendor, $project, $package['version']);
-        uslep(20000); // We want to be nice with the packagist API
+        usleep(20000); // We want to be nice with the packagist API
         if($updates === true) {
           // The package has a version with higher patch number.
           $this->comment($package['name']);
