@@ -58,7 +58,7 @@ class laraSec {
       list($vendor, $project) = explode('/', $package['name']);
 
       // Check for known security vulnerabilities.
-      $alerts = $this->getSecurityAlerts($vendor, $project, '7.0.0');
+      $alerts = $this->getSecurityAlerts($vendor, $project, $package['version']);
       if(sizeof($alerts) > 0) {
         foreach($alerts as $alert) {
           $pkgAlerts[] = [
