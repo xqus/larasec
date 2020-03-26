@@ -12,7 +12,7 @@ class Packagist {
     if(sizeof($verArr) === 3) {
       list($major, $minor, $patch) = $verArr;
       $minVer = $version;
-      $maxVer = $major.'.'.$minor.'.999999';
+      $maxVer = $major.'.9999999.999999';
       //$maxVer = '999.99999.999999';
 
       $client = new \GuzzleHttp\Client();
