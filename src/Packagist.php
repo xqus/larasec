@@ -2,6 +2,7 @@
 namespace xqus\laraSec;
 
 use Composer\Semver\Semver;
+use GuzzleHttp\Exception\RequestException;
 
 class Packagist {
 
@@ -15,7 +16,11 @@ class Packagist {
       //$maxVer = '999.99999.999999';
 
       $client = new \GuzzleHttp\Client();
-      $response = $client->request('GET', 'https://packagist.org/packages/'.$vendor.'/'.$package.'.json');
+      try {
+        $response = $client->request('GET', 'https://packagist.org/packages/'.$vendor.'/'.$package.'.json');
+      } catch (RequestException $e) {
+        return null;
+      }
       if($response->getStatusCode() !== 200) {
         return null;
       }
