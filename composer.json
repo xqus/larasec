@@ -19,7 +19,7 @@
       }
     },
     "require": {
-        "laravel/framework": "^7.0",
+        "laravel/laravel": "^7.0",
         "symfony/yaml": "^5.0",
         "composer/semver": "^1.0",
         "guzzlehttp/guzzle": "^6.5"
