@@ -17,6 +17,8 @@ jobs:
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
       run: composer install --no-scripts --prefer-dist
+    -name: List files
+      run: ls -lsa
     - name: Generate key
       run: php artisan key:generate
     - name: Directory Permissions
