@@ -17,10 +17,10 @@ jobs:
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
       run: composer install --prefer-dist
-    - name: List files
+    - name: List files vendor/bin
       run: ls -lsa
     - name: List files vendor
-      run: ls -lsa vendor
+      run: ls -lsa vendor/mockery
     - name: Generate key
       run: php artisan key:generate
     - name: Directory Permissions
