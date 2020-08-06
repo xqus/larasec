@@ -1,4 +1,4 @@
-name: Laravel
+name: Laravel Mockery
 
 on:
   push:
@@ -14,6 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install Dependencies
-      run: composer install --prefer-dist
+      run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: vendor/bin/phpunit
