@@ -3,7 +3,7 @@
   <img alt="Laravel" src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="200">
 </h1>
 
-<p style="text-align: center;">
+<p>
   <a href="https://travis-ci.com/github/xqus/larasec"><img src="https://travis-ci.com/xqus/larasec.svg?branch=master" alt="Build Status"></a>
   <a href="https://packagist.org/packages/xqus/larasec"><img src="https://poser.pugx.org/xqus/larasec/d/total.svg" alt="Total Downloads"></a>
   <a href="https://packagist.org/packages/xqus/larasec"><img src="https://poser.pugx.org/xqus/larasec/v/stable.svg" alt="Latest Stable Version"></a>
