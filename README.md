@@ -1,9 +1,9 @@
 <h1>
   laraSec for
-  <img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="200">
+  <img alt="Laravel" src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="200">
 </h1>
 
-<p align="center">
+<p style="text-align: center;">
   <a href="https://travis-ci.com/github/xqus/larasec"><img src="https://travis-ci.com/xqus/larasec.svg?branch=master" alt="Build Status"></a>
   <a href="https://packagist.org/packages/xqus/larasec"><img src="https://poser.pugx.org/xqus/larasec/d/total.svg" alt="Total Downloads"></a>
   <a href="https://packagist.org/packages/xqus/larasec"><img src="https://poser.pugx.org/xqus/larasec/v/stable.svg" alt="Latest Stable Version"></a>
@@ -14,13 +14,18 @@
 
 laraSec is a Laravel package that will scan your composer dependencies
 and alerts you about potention security vulnerabilities. laraSec uses
-[PHP Security Advisories Database](https://github.com/FriendsOfPHP/security-advisories) as a source of known vulnerabilities.
+[PHP Security Advisories Database](https://github.com/FriendsOfPHP/security-advisories) as a source of known
+vulnerabilities, and Packagist to check for updates.
 
 ## Installation
 
 `composer require xqus/larasec`
 
+If you want to set up e-mail notifications first publish the configuration-file to your config directory.
+
 `php artisan vendor:publish --provider="xqus\laraSec\laraSecServiceProvider" --tag="config"`
+
+Then edit the e-mail address in `config\larasec.php`.
 
 ## Usage
 ```
