@@ -5,7 +5,6 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Notification;
 use xqus\laraSec\Notifications\ScanReportNotification;
 use xqus\laraSec\laraSec;
-use xqus\laraSec\VulnDb;
 
 
 class Notify extends Command {
@@ -13,7 +12,7 @@ class Notify extends Command {
     protected $description = '';
 
     public function handle() {
-      if(config('larasec.notify') === 'email@example.com') {
+      if(!config('larasec.notify') || config('larasec.notify') === '' || config('larasec.notify') === 'email@example.com') {
         $this->error('No email address configured.');
         return 1;
       }
@@ -27,5 +26,7 @@ class Notify extends Command {
         Notification::route('mail', config('larasec.notify'))
           ->notify(new ScanReportNotification($alerts, $updates));
       }
+
+      return 0;
     }
 }
