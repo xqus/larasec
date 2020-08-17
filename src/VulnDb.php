@@ -1,59 +1,60 @@
 <?php
+
 namespace xqus\laraSec;
 
 use Illuminate\Support\Facades\Storage;
 
-class VulnDb {
+class VulnDb
+{
+    protected $dir = null;
 
-  protected $dir = null;
+    protected $tmpDir = null;
 
-  protected $tmpDir = null;
+    protected $source = 'https://github.com/FriendsOfPHP/security-advisories/archive/master.zip';
 
-  protected $source = 'https://github.com/FriendsOfPHP/security-advisories/archive/master.zip';
-
-  public function __construct() {
-    $this->tmpDir = sys_get_temp_dir() . '/larasec-' . time();
-  }
-
-  public function update() {
-    if(!is_dir($this->tmpDir)) {
-      mkdir($this->tmpDir);
+    public function __construct()
+    {
+        $this->tmpDir = sys_get_temp_dir().'/larasec-'.time();
     }
 
-    $client = new \GuzzleHttp\Client();
-    $response = $client->request('GET', $this->source);
+    public function update()
+    {
+        if (! is_dir($this->tmpDir)) {
+            mkdir($this->tmpDir);
+        }
 
-    file_put_contents($this->tmpDir.'/master.zip', $response->getBody());
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', $this->source);
 
-    $zip = new \ZipArchive;
-    $res = $zip->open($this->tmpDir.'/master.zip');
-    if ($res === TRUE) {
-      $zip->extractTo($this->tmpDir);
-      $zip->close();
+        file_put_contents($this->tmpDir.'/master.zip', $response->getBody());
+
+        $zip = new \ZipArchive;
+        $res = $zip->open($this->tmpDir.'/master.zip');
+        if ($res === true) {
+            $zip->extractTo($this->tmpDir);
+            $zip->close();
+        }
+
+        $this->copyToLaravel($this->tmpDir.'/security-advisories-master');
     }
 
-    $this->copyToLaravel($this->tmpDir.'/security-advisories-master');
-
-  }
-
-
-
-  private function copyToLaravel($dir) {
-    $basePath = $this->tmpDir.'/security-advisories-master/';
-    if(is_dir($dir)) {
-      if ($handle = opendir($dir)) {
-        while (false !== ($entry = readdir($handle))) {
-            if($entry != "." && $entry != "..") {
-              if(is_dir($dir.'/'.$entry)) {
-                $this->copyToLaravel($dir.'/'.$entry);
-              } elseif(substr($entry, -5) == '.yaml') {
-                $fileName = str_replace($basePath, '', $dir)."/".$entry;
-                Storage::put('larasec/'.$fileName, file_get_contents($basePath.$fileName));
-              }
+    private function copyToLaravel($dir)
+    {
+        $basePath = $this->tmpDir.'/security-advisories-master/';
+        if (is_dir($dir)) {
+            if ($handle = opendir($dir)) {
+                while (false !== ($entry = readdir($handle))) {
+                    if ($entry != '.' && $entry != '..') {
+                        if (is_dir($dir.'/'.$entry)) {
+                            $this->copyToLaravel($dir.'/'.$entry);
+                        } elseif (substr($entry, -5) == '.yaml') {
+                            $fileName = str_replace($basePath, '', $dir).'/'.$entry;
+                            Storage::put('larasec/'.$fileName, file_get_contents($basePath.$fileName));
+                        }
+                    }
+                }
+                closedir($handle);
             }
         }
-        closedir($handle);
-      }
     }
-  }
 }

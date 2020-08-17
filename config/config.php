@@ -1,5 +1,5 @@
 <?php
 
 return [
-  'notify' => 'email@example.com',
+    'notify' => 'email@example.com',
 ];

@@ -4,17 +4,16 @@ namespace xqus\laraSec\Notifications;
 
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use JohnDoe\BlogPackage\Models\Post;
 
 class ScanReportNotification extends Notification
 {
     public $alerts;
     public $updates;
 
-    public function __construct(Array $alerts, Array $updates)
+    public function __construct(array $alerts, array $updates)
     {
-      $this->alerts = $alerts;
-      $this->updates = $updates;
+        $this->alerts = $alerts;
+        $this->updates = $updates;
     }
 
     /**
@@ -36,14 +35,12 @@ class ScanReportNotification extends Notification
      */
     public function toMail($notifiable)
     {
-      return (new MailMessage)
+        return (new MailMessage)
           ->subject('laraSec report')
           ->markdown('larasec::mail.scanReport', [
-            'alerts'  => $this->alerts,
-            'updates' => $this->updates,
+              'alerts'  => $this->alerts,
+              'updates' => $this->updates,
           ]);
-
-
     }
 
     /**
